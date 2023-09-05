@@ -1,0 +1,24 @@
+@extends('layout/index')
+@section('header', 'Jenjang | YPI BP Kulon')
+@section('judul','Santri')
+@section('action3','active')
+@section('content')
+<div class="panel-heading">
+    <h6 class="panel-title">EDIT JENJANG</h6>
+</div>
+<form method="post" action="{{url('/jenjang/'.$jenjang->id)}}">
+    @method ('patch')
+    @csrf
+    <div class="form-group">
+        <label for="jenjang">Jenjang</label>
+        <input type="text" class="form-control @error('jenjang') is-invalid @enderror" value="{{ old('jenjang') ?? $jenjang->jenjang}}" id="jenjang" placeholder="Jabatan" name="jenjang">
+        @error('jenjang')
+        <div class="invalid-feedback">
+            {{ $message }}
+        </div>
+        @enderror
+    </div>
+    <button type="submit" class="btn btn-primary btn-sm right mr-2" onclick="return confirm('Apakah Anda Yakin Mengubah Data Ini?');">Submit</button>
+    <div class="clr"></div>
+</form>
+@endsection
